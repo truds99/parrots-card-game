@@ -63,6 +63,7 @@ h1 {
 }
 .board {
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     width: 1100px;
     justify-content: center;
@@ -72,4 +73,7 @@ h1 {
 .card-front img {
     width: 75px;
     height: 75px;
+}
+.firstRow, .secondRow {
+    display: flex;
 }
