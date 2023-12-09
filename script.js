@@ -1,15 +1,8 @@
 const images = ["bobrossparrot", "explodyparrot", "fiestaparrot", "metalparrot", "revertitparrot", "tripletsparrot", "unicornparrot"];
 images.sort(compare);
 const deck = [];
-let count = 0, countPlays = 0, hits = 0, card1, card2;
-let numberCards = prompt ("Pick a number (pair) from 4 to 14 cards to play");
-
-while (numberCards < 4 || numberCards > 14 || numberCards % 2 != 0){
-        numberCards = prompt ("Pick a number (pair) from 4 to 14 cards to play");
-    }
-
-renderDeck();    
-
+let numberCards = 0, count = 0, countPlays = 0, hits = 0, seconds, card1, card2, myInterval;
+   
 function compare() { 
 	return Math.random() - 0.5; 
 }
@@ -84,5 +77,23 @@ function unflipCards(){
 }
 
 function msg() {
-    alert (`Você ganhou em ${countPlays} jogadas`);
+    alert (`Você ganhou em ${countPlays} jogadas e ${seconds} segundos`);
+    clearInterval(myInterval);
 }
+
+function start(){
+    numberCards = prompt ("Pick a number (pair) from 4 to 14 cards to play");
+    while (numberCards < 4 || numberCards > 14 || numberCards % 2 != 0){
+        numberCards = prompt ("Pick a number (pair) from 4 to 14 cards to play");
+    }
+    renderDeck();
+    seconds = 0;
+    myInterval = setInterval(clock, 1000);
+}
+
+function clock(){
+    document.querySelector(".clock").innerHTML = seconds;
+    seconds ++;
+}
+
+start();
