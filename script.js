@@ -1,7 +1,6 @@
 const images = ["bobrossparrot", "explodyparrot", "fiestaparrot", "metalparrot", "revertitparrot", "tripletsparrot", "unicornparrot"];
-images.sort(compare);
-const deck = [];
-let numberCards = 0, count = 0, countPlays = 0, hits = 0, seconds, card1, card2, myInterval;
+let deck = [];
+let numberCards = 0, count = 0, countPlays = 0, hits = 0, seconds = 0, card1, card2, myInterval, row1, row2;
    
 function compare() { 
 	return Math.random() - 0.5; 
@@ -44,15 +43,15 @@ function renderDeck(){
 }
 
 function flipCard (card){
-    if (count != 2) {
+    if (card.classList.contains("frontFace") === false && count != 2) {
         if (count === 0) {
             card.classList.add("frontFace", "card1");
             card1 = card;
             count = 1;
         }   else { 
+                count = 2;
                 card.classList.add("frontFace", "card2");
                 card2 = card;
-                count = 2;
                 if (card1.querySelector(".card-content").querySelector(".card-front").querySelector("img").src === card2.querySelector(".card-content").querySelector(".card-front").querySelector("img").src){
                     card1.classList.remove("card1");
                     card2.classList.remove("card2");
@@ -68,6 +67,7 @@ function flipCard (card){
             }
         countPlays ++;    
         }
+
     }
 
 function unflipCards(){
@@ -77,17 +77,29 @@ function unflipCards(){
 }
 
 function msg() {
-    alert (`Você ganhou em ${countPlays} jogadas e ${seconds} segundos`);
+    alert(`Você ganhou em ${countPlays} jogadas e ${seconds} segundos`);
     clearInterval(myInterval);
+    let restart = prompt("Play again? (yes or no)");
+    if (restart === "yes") {
+        row1 = document.querySelector(".firstRow");
+        row2 = document.querySelector(".secondRow");
+        row1.innerHTML = "";
+        row2.innerHTML = "";
+        start();
+    }
 }
 
 function start(){
+    images.sort(compare);
+    deck = [];
+    countPlays = 0;
+    hits = 0;
     numberCards = prompt ("Pick a number (pair) from 4 to 14 cards to play");
     while (numberCards < 4 || numberCards > 14 || numberCards % 2 != 0){
         numberCards = prompt ("Pick a number (pair) from 4 to 14 cards to play");
     }
     renderDeck();
-    seconds = 0;
+    seconds = 1;
     myInterval = setInterval(clock, 1000);
 }
 
