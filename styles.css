@@ -64,8 +64,7 @@ h1 {
 .board {
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-    width: 1100px;
+    max-width: 1100px;
     justify-content: center;
     align-items: center;
     padding-left: 23px;
@@ -76,6 +75,8 @@ h1 {
 }
 .firstRow, .secondRow {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 .clock {
     position: fixed;
@@ -83,4 +84,19 @@ h1 {
     right: 50px;
     font-size: 56px;
     color: blue;
+}
+
+@media (min-width: 501px) and (max-width: 860px){
+    h1, .clock {
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 500px){
+    .clock {
+        font-size: 25px;
+    }
+    h1 {
+        font-size: 36px;
+    }
 }
