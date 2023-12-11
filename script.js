@@ -104,10 +104,9 @@ function clock(){
 }
 
 function start(){
-    numberCards = prompt ("Pick a number (pair) from 4 to 14 cards to play");
-    while (numberCardsInvalid()){
+    do {
         numberCards = prompt ("Pick a number (pair) from 4 to 14 cards to play");
-    }
+    }   while (numberCardsInvalid());
     renderDeck();
     myInterval = setInterval(clock, 1000);
 }
