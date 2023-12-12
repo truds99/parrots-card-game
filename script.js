@@ -58,7 +58,6 @@ function flipCard(card) {
                 resetCards();
                 hits ++;
                 if (hits === numberCards/2) {
-                    countPlays ++;
                     setTimeout(endGame, 650);   
                 }
             }   
