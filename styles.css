@@ -86,6 +86,7 @@ h1 {
     color: blue;
 }
 
+/* intermediary media query because the clock was in front of the title. */
 @media (min-width: 501px) and (max-width: 860px){
     h1, .clock {
         font-size: 36px;

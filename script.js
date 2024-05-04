@@ -1,45 +1,48 @@
 const images = ["bobrossparrot", "explodyparrot", "fiestaparrot", "metalparrot", "revertitparrot", "tripletsparrot", "unicornparrot"];
 images.sort(compare);
 let deck = [];
-let numberCards = 0, count = 0, countPlays = 0, hits = 0, seconds = 0, card1, card2, myInterval, row1, row2;
+let numberCards = 0, count = 0, countPlays = 0, hits = 0, seconds = 0, card1, card2, myInterval;
+const row1 = document.querySelector(".firstRow"), row2 = document.querySelector(".secondRow");
    
 function compare(){ 
 	return Math.random() - 0.5; 
 }
 
 function renderDeck(){
-    for (let i=0; i<numberCards/2; i++) {
+    for (let i = 0; i < numberCards / 2; i++) {
         deck.push(images[i]);
         deck.push(images[i]);
     }
     deck.sort(compare);
-    for (i=0; i<numberCards/2; i++) {
+
+    // 2 equal rows of cards as a matter of design.
+    for (i = 0; i < numberCards / 2; i++) {
         let image = deck[i];
-        document.querySelector(".firstRow").innerHTML += `
-        <div onclick="flipCard(this)" class="card">
-            <div class="card-content">
-                <div class="card-back">
-                    <img src="usefulFiles/front.png" alt="parrot">
+        row1.innerHTML += `
+            <div onclick="flipCard(this)" class="card">
+                <div class="card-content">
+                    <div class="card-back">
+                        <img src="usefulFiles/front.png" alt="parrot">
+                    </div>
+                    <div class="card-front">
+                        <img src="usefulFiles/${image}.gif" alt="${image}">
+                    </div>
                 </div>
-                <div class="card-front">
-                    <img src="usefulFiles/${image}.gif" alt="${image}">
-                </div>
-            </div>
-        </div>`
+            </div>`;
     }
-    for (i=numberCards/2; i<numberCards; i++) {
+    for (i = numberCards / 2; i < numberCards; i++) {
         let image = deck[i];
-        document.querySelector(".secondRow").innerHTML += `
-        <div onclick="flipCard(this)" class="card">
-            <div class="card-content">
-                <div class="card-back">
-                    <img src="usefulFiles/front.png" alt="parrot">
+        row2.innerHTML += `
+            <div onclick="flipCard(this)" class="card">
+                <div class="card-content">
+                    <div class="card-back">
+                        <img src="usefulFiles/front.png" alt="parrot">
+                    </div>
+                    <div class="card-front">
+                        <img src="usefulFiles/${image}.gif" alt="${image}">
+                    </div>
                 </div>
-                <div class="card-front">
-                    <img src="usefulFiles/${image}.gif" alt="${image}">
-                </div>
-            </div>
-        </div>`
+            </div>`;
     }
 }
 
